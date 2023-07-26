@@ -1,0 +1,22 @@
+Two pointers：
+  First pointer i points to the index where nums[i] == val, scan from left to right
+  Second pointer j points to the index where nums[i] != val, scan from right to left
+  swap the two element, after swapping, nums[i] != val, and nums[j] == val
+  When i >= j, jump out the loop,
+  All elements before i are not equal to val, and all element after j are equal to val, then return i + 1
+
+  27 code:
+    public int removeElement(int[] nums, int val) {
+        int i = 0, j = nums.length - 1;
+        while(i <= j) {
+            while (i <= j && nums[i] != val)    i++; //nums[i] == val
+            while (i <= j && nums[j] == val)    j--; //nums[j] != val
+            //i > j
+            if (i > j)  return i;
+            //swap i j
+            nums[i] = nums[j];
+            nums[j] = val;
+        }
+        return i + 1;
+    }
+  
