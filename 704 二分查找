@@ -1,1 +1,52 @@
+O（nlogn）
+
+Key 1: while (left <= right)           
+      int left = 0, right = nums.length - 1;
+      means to serch in range [left, right]
+      while (left <= right) 
+          to stop the while loop we need condtion left = right + 1, in another word [right + 1, right], e.g.[3,2]
+          in above case, search space is empty, then we can jump out the loop correctly.
+      while(left < right)
+          to stop the while loop we need condition left == right, in another word [right,right], e.g.[3,3]
+          in this case, search space still has 3, when we jump out the loop, 3 is missed.
+
+Key 2: left = mid + 1; right = mid - 1;
+
+      Before we update the value of left or right, left or right has already been searched, and it is not our answer, 
+      so we need to move to serach the value next to it.
+      
+Key 3: mid = (right - left) / 2 + left
+      
+      To avoid integer flood in case (left + right) may exceed the Integer.MAX_VALUE
+
+Key 4: in cases that more than one index is valid answer, how to return the leftmost index
+      int left = 0, right = nums.length; // means to serch in range [left, right)
+      while (left < right) {
+          int mid = (right - left) / 2 + left;
+          if (nums[mid] == target) {
+              right = mid;
+          } else if (nums[mid] < target) {
+              left = mid + 1;
+          } else {
+              right = mid;
+          }
+      }
+
+704 code:
+  public int search(int[] nums, int target) {
+        int left = 0, right = nums.length - 1; //0,5
+        int mid = left + (right - left)/2; //2
+        while (left <= right) {
+            //System.out.println(mid);
+            if (nums[mid] == target)    return mid;
+            if (nums[mid] < target) {
+                left = mid + 1; //2
+            } else {
+                right = mid - 1;
+            }
+            mid = left + (right - left) / 2; 
+            
+        }
+        return -1;
+    }
 
