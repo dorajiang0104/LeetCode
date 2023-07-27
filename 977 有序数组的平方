@@ -19,3 +19,5 @@ Key 2: start pointer and end pointer to compare to integer absolute value
         //when start == end, nums[start] == nums[end], is included in the first if condition, so the answer is not missed
         return ans;
     }
+//Optimization: using multiple result to replace Math.abs() value
+            if (nums[start] * nums[start] >= nums[end] * nums[end])
