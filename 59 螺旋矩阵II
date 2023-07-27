@@ -1,0 +1,34 @@
+class Solution {
+    public int[][] generateMatrix(int n) {
+        int[][] ans = new int[n][n];
+        int num = 1; 
+        int i = 0, j = 0;
+        while (num <= n * n) {
+            //right j++
+            while (num <= n * n && j < n && ans[i][j] == 0) {
+                ans[i][j ++] = num ++;
+            } //j == n
+            j--;
+            i++;
+            //down i++
+            while (num <= n * n && i < n && ans[i][j] == 0) {
+                ans[i ++][j] = num ++;
+            } //i == n
+            i --;
+            j --;
+            //left j--
+            while (num <= n * n && j >= 0 && ans[i][j] == 0) {
+                ans[i][j --] = num ++;
+            }
+            j ++;
+            i --;
+            //up i--
+            while (num <= n * n && i >= 0 && ans[i][j] == 0) {
+                ans[i --][j] = num ++;
+            }
+            i ++;
+            j ++;
+        }
+        return ans;
+    }
+}
