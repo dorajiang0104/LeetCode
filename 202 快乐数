@@ -1,0 +1,20 @@
+class Solution {
+    public boolean isHappy(int n) {
+        Set<Integer> set = new HashSet<>(); 
+        while (n != 1) {
+            n = getSquareSum(n);
+            if (set.contains(n))    return false;
+            set.add(n);
+        }
+        return true;
+    }
+    public int getSquareSum(int n) {
+        int ans = 0;
+        while ( n >= 10) {
+            ans += (n%10) * (n%10);
+            n /= 10;
+        }
+        ans += (n * n);
+        return ans;
+    }
+}
