@@ -1,0 +1,18 @@
+//s[i] 与 s[j] 交换的位运算方法
+s[j] ^= s[i]; // s[j] = 1
+s[i] ^= s[j]; // s[i] = 1
+s[j] ^= s[i]; // s[j] = 0
+
+class Solution {
+    public void reverseString(char[] s) {
+        //two pointers start end move to middle
+        int i = 0, j = s.length - 1;
+        while (i < j) {
+            char temp = s[j];
+            s[j] = s[i];
+            s[i] = temp;
+            i ++;
+            j --;
+        }
+    }
+}
